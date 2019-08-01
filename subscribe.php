@@ -8,7 +8,7 @@
 include "tools.php";
 include "chaincode/chaincode.php";
 $uid = session('uid');
-$tasks = getAvailableTask($uid);
+$tasks = getAvailableTasks($uid);
 $subTask = getSubscribedTask($uid);
 $tid = post('tid');
 if ($tid) {

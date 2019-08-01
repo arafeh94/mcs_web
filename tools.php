@@ -41,6 +41,22 @@ function error($error)
     $GLOBALS['errors'][] = $error;
 }
 
+function body_start()
+{
+    echo "<div style='background-color: black;margin: 0'>";
+}
+
+function body_end(){
+    echo "</div>";
+}
+
+function new_line($msg = "", $color = 'yellow')
+{
+    $msg = print_r($msg, true);
+    echo "<font color=$color><code><pre>$msg</pre></code></font>";
+    echo "<br>";
+}
+
 function errors()
 {
     return $GLOBALS['errors'];
