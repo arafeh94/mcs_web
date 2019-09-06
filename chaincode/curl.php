@@ -6,9 +6,34 @@
  * Time: 8:31 AM
  */
 
-require __DIR__ . '/../vendor/autoload.php';
+include($_SERVER['DOCUMENT_ROOT'] . "/mcs/vendor/autoload.php");
 
 use \Curl\Curl;
+
+/**
+ * @param $path
+ * @param $function
+ * @param $args
+ * @param bool $wait
+ * @return Curl|Exception |null
+ */
+function execute($path, $function, $args, $wait = true)
+{
+    try {
+        $path = new FabricPath($path);
+        $curl = new Curl();
+        $curl->setHeader('Authorization', "Bearer {$path->auth}");
+        $curl->get("http://localhost:{$path->port}/channels/{$path->channel}/chaincodes/{$path->chaincode}", [
+            'fcn' => $function,
+            'args' => json_encode($args),
+            'waitForTransactionEvent' => $wait,
+
+        ]);
+        return $curl;
+    } catch (Exception $e) {
+        return $e;
+    }
+}
 
 /**
  * args = ["account", "4", "{name:foor}"]
@@ -62,7 +87,6 @@ function auth($port, $username, $password)
 {
     try {
         $curl = new Curl();
-        $curl->setHeader('Authorization', "Bearer {$path->auth}");
         $curl->setHeader('Content-Type', 'application/json');
         $curl->post("http://localhost:$port/users", array(
             'username' => $username,

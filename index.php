@@ -13,7 +13,7 @@ if (!$page) {
 $page = $page . '.php';
 
 include "template/header.php";
-echo "<div id='content' style='margin-top: 120px'>";
+echo "<div id='content' style='margin-top: 16px'>";
 if ((@include $page) === false) {
     include "error.php";
 }

@@ -7,6 +7,7 @@
  */
 include "tools.php";
 include "chaincode/chaincode.php";
+
 $username = post("username");
 $password = post("password");
 $email = post("email");
@@ -17,6 +18,8 @@ if (post('i')) {
         if ($username && $password && $type && $email) {
             if (!userExists($username)) {
                 addUser($username, $email, $password, $type);
+                $user = getUser($username, $password);
+                login($user);
             } else {
                 $error = "user already exists";
             }
@@ -27,19 +30,23 @@ if (post('i')) {
         if ($username && $password) {
             $user = getUser($username, $password);
             if ($user) {
-                session('uid', $user['id']);
-                session('type', $user['type']);
-                if ($user['type'] == 'c') {
-                    header('Location: ' . url('task'));
-                } else {
-                    header('Location: ' . url('subscribe'));
-                }
+                login($user);
             } else {
                 $error = "invalid username or password";
             }
         } else {
             $error = "some field are missing";
         }
+    }
+}
+
+function login($user){
+    session('uid', $user->id);
+    session('type', $user->type);
+    if ($user->type == 'c') {
+        header('Location: ' . url('task'));
+    } else {
+        header('Location: ' . url('subscribe'));
     }
 }
 ?>
