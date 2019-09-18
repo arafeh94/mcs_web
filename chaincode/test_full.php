@@ -59,7 +59,6 @@
     new_line(addObservation($hammoud->id, $avTasks[0]->id, "2019-10-10 12:00:03", ['lat' => 10, 'lng' => 13, 'activity' => 1]));
     new_line(addObservation($hammoud->id, $avTasks[0]->id, "2019-10-10 12:00:04", ['lat' => 10, 'lng' => 14, 'activity' => 2]));
     new_line(addObservation($hammoud->id, $avTasks[0]->id, "2019-10-10 12:00:05", ['lat' => 10, 'lng' => 15, 'activity' => 2]));
-    new_line("*********get all observations {ahmad}**********");
 
     new_line("*********add observations {ajaj}**********");
     new_line(addObservation($ajaj->id, $avTasks[0]->id, "2019-10-10 12:00:00", ['lat' => 10, 'lng' => 10, 'activity' => 4]));
@@ -68,10 +67,9 @@
     new_line(addObservation($ajaj->id, $avTasks[0]->id, "2019-10-10 12:00:03", ['lat' => 10, 'lng' => 13, 'activity' => 1]));
     new_line(addObservation($ajaj->id, $avTasks[0]->id, "2019-10-10 12:00:04", ['lat' => 10, 'lng' => 14, 'activity' => 2]));
     new_line(addObservation($ajaj->id, $avTasks[0]->id, "2019-10-10 12:00:05", ['lat' => 10, 'lng' => 15, 'activity' => 2]));
-    new_line("*********get all observations {ajaj}**********");
 
 
-    new_line(quality($avTasks[0]->id)->response);
+    new_line(quality($avTasks[0]->id));
     new_line(getReport($avTasks[0]->id));
 
     ?>

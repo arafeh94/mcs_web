@@ -8,7 +8,7 @@
 include "tools.php";
 include "chaincode/chaincode.php";
 
-$taskId = post('tid');
+$taskId = get('tid');
 
 if ($taskId) {
     $report = getReport($taskId);

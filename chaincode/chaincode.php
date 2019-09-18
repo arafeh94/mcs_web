@@ -82,10 +82,13 @@ function getQualityInTask($uid, $tid)
 {
     $qts = query(FABRIC_SUBSCRIPTION, new QueryArgs(TASK_PARTICIPANTS_TABLE));
     foreach ($qts as $qt) {
+        if (empty($qt->value->quality)) continue;
         if ($qt->value->tid == $tid && $qt->value->uid == $uid) {
             return $qt->value;
         }
     }
+    echo "<br>";
+    echo "<br>";
     return false;
 }
 
@@ -200,6 +203,16 @@ function getObservations($userId, $taskId)
 function getAllObservations()
 {
     $observations = query(FABRIC_OBSERVATION, new QueryArgs(OBSERVATION_TABLE));
+    $results = [];
+    foreach ($observations as $observation) {
+        $results [] = $observation->value;
+    }
+    return $results;
+}
+
+function getAllScores()
+{
+    $observations = query(FABRIC_SUBSCRIPTION, new QueryArgs(TASK_PARTICIPANTS_TABLE));
     $results = [];
     foreach ($observations as $observation) {
         $results [] = $observation->value;

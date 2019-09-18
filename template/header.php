@@ -14,9 +14,21 @@
 
 <div style="width: 100%;text-align: right;height: 64px">
     <?php if (isset($_SESSION['uid'])): ?>
-        <button style="margin: 12px" class="btn btn-danger" onclick="window.location='index.php?r=logout'">
-            LogOut
-        </button>
+        <div style="margin: 12px">
+            <button class="btn btn-danger" onclick="window.location='index.php?r=logout'">
+                LogOut
+            </button>
+            <input type="text" readonly class="btn btn-link" onclick="copy(this)" value="<?= $_SESSION['uid'] ?>" style="padding: 0;width: 150px"/>
+        </div>
     <?php endif; ?>
 </div>
+
+<script>
+    function copy(element) {
+        console.log(element);
+        element.select();
+        element.setSelectionRange(0, 99999); /*For mobile devices*/
+        document.execCommand("copy");
+    }
+</script>
 

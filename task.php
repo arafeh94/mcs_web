@@ -107,8 +107,9 @@ $tasks = getTasks($uid);
                 <td><?= $task->budget ?></td>
                 <td><?= $task->status ?></td>
                 <td>
-                    <form style="margin: 0" action="index.php?r=report" method="post">
+                    <form style="margin: 0" action="index.php" method="get">
                         <input type="hidden" name="tid" value="<?= $task->id ?>">
+                        <input type="hidden" name="r" value="report">
                         <button type="submit" class="btn btn-sm  btn-lg btn-success">View</button>
                     </form>
                 </td>

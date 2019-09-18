@@ -40,7 +40,8 @@ if (post('i')) {
     }
 }
 
-function login($user){
+function login($user)
+{
     session('uid', $user->id);
     session('type', $user->type);
     if ($user->type == 'c') {
@@ -49,6 +50,7 @@ function login($user){
         header('Location: ' . url('subscribe'));
     }
 }
+
 ?>
 
 <div style="width: 100%;height: 100%">
@@ -96,12 +98,11 @@ function login($user){
                     </div>
                 </div>
             <?php endif; ?>
-            <button type="submit"
-                    onclick='return goto()'
-                    class="btn btn-primary" style="width: 48%">
-                <?= get('signup') ? "Sign In" : "Sign Up" ?>
+            <button type="submit" class="btn btn-primary" style="width: 96%">Submit</button>
+            <button onclick='return goto()'
+               class='btn-link btn' style="width: 96%">
+                <?= get('signup') ? "Want To Sign In?" : "Want To Sign Up?" ?>
             </button>
-            <button type="submit" class="btn btn-primary" style="width: 48%">Submit</button>
         </form>
     </div>
 </div>
